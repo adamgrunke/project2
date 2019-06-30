@@ -23,7 +23,7 @@ router.post('/signup', function(req, res) {
       })(req, res);
     } else {
       console.log("email already exists");
-      req.flash('error', 'Email aleady exists! 🗡 ');
+      req.flash('error', 'Email aleady exists!');
 
       res.redirect('/auth/signup');
     }

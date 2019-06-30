@@ -1,12 +1,13 @@
 'use strict';
 const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     email: {
       type: DataTypes.STRING,
       validate: {
         isEmail: {
-          msg: 'Please enter a valid email address'
+          msg: 'Invalid email address'
         }
       }
     },
@@ -15,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [1,99],
-          msg: 'Invalid username. Must be between 1 and 99 charachters'
+          msg: 'Invalid user name. Must be between 1 and 99 characters.'
         }
       }
     },
@@ -24,25 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [8,99],
-          msg: 'Password must be at least 8 characters'
+          msg: 'Please enter at least 8 characters for your password.'
         }
       }
     }
   }, {
     hooks: {
       beforeCreate: function(pendingUser, options) {
-        if (pendingUser && pendingUser.password){
+        if (pendingUser && pendingUser.password) {
           var hash = bcrypt.hashSync(pendingUser.password, 12);
-          pendingUser.password = hash;
-          console.log(hash);
+          pendingUser.password = hash; 
         }
       }
     }
   });
   user.associate = function(models) {
     // associations can be defined here
-
-  };
+  }; 
   user.prototype.validPassword = function(passwordTyped) {
     return bcrypt.compareSync(passwordTyped, this.password);
   };
@@ -50,6 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     var userData = this.get();
     delete userData.password;
     return userData;
-  };
+  };  
   return user;
 };
