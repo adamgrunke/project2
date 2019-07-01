@@ -11,6 +11,13 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
 const app = express();
 
+
+//geocoding setup
+const mapbox = require('@mapbox/mapbox-sdk/services/geocoding')
+const geocodingClient = mapbox({
+    accessToken: process.env.MAPBOX_PUBLIC_KEY
+})
+
 // This is only used by the sessionStore
 const db = require('./models');
 

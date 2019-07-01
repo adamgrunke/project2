@@ -8,3 +8,24 @@
 
 <p id="show-lat"></p>
 <p id="show-long"></p>
+
+<%# from mapbox  %>
+<div id='map' ></div>
+<script>
+
+
+mapboxgl.accessToken = "pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w"
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9'
+    // center: markerCoords[0],
+    // zoom: 9
+})
+</script>
+
+
+
+
+
+
+    <script src="/js/new-item.js"></script>
