@@ -1,7 +1,6 @@
 // DOM 
-let getLocationBtn = document.getElementById('getlocation-btn')
-let dispLat = document.getElementById('show-lat')
-let dispLong = document.getElementById('show-long')
+let getLocationBtn = document.getElementById('getlocation-btn');
+let latLong = document.getElementById('lat-long');
 
 // Event listeners
 getLocationBtn.addEventListener('click',aquireLocation);
@@ -27,8 +26,7 @@ function aquireLocation(){
 }
 
 function showLocation(position){
-    dispLat.textContent = `Latitude: ${position.coords.latitude}`
-    dispLong.textContent = `Lonitude: ${position.coords.longitude}`
+    latLong.textContent = `Quick copy lat/long: ${position.coords.latitude}, ${position.coords.longitude}`
 
 }
 

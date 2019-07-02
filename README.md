@@ -25,3 +25,241 @@ Express authentication template using Passport + flash messages + custom middlew
   * Run `createdb express_auth_development` to create the development database
   * Run `createdb express_auth_test` to create the test database
   * Run `sequelize db:migrate` to run migrations
+
+
+
+
+
+
+
+
+*====================================*
+
+
+
+
+Project 2 - Neighborhood Cleanup 
+
+Identify item
+Mark location of item.
+List tools required for cleanup.
+Show safety recommendations for cleanup.
+Share to public map.
+Remove item after cleanup. 
+
+Stretch goals:
+
+Upload image of item.
+Gamify by awarding score.
+
+
+
+*********************
+What data? 
+
+Item 
+-is it sharp
+-Hazard level
+-Size
+-location
+
+
+User
+-name
+-email
+-password
+
+
+
+********************
+
+
+userFoundItems
+
+allFoundItemsBB
+
+
+*********************
+
+Pages
+
+Landing page - login / create account
+
+Add Item page - fast. Super easy. 
+	- grab location when form loads.
+	- type of item select buttons. 
+	- optional notes.
+	- submit.
+
+
+
+Show user items to be picked up
+Show all items nearby to be picked up
+
+Show metrics
+	user metrics only
+	user metrics compared to … all users within range… all users
+
+
+
+*****************************************
+Brainstorming
+*****************************************
+
+
+How does the user interact with this application? 
+
+Step 1: the user identifies something they want to clean up, but do not have the tools at that moment.
+
+Step 2: the user opens the app and selects the ADD ITEM button.
+
+Step 3: Behind the scenes - the app calls the geolocation api for the user’s current location. Once that data has arrived, the location is shown on a map.
+
+Step 4: Below the map, there are options for the item description. These descriptors are stored in the “item” model.
+	* Hazardous boolean
+	* Sharp boolean
+	* Waste boolean
+	* Needs broom boolean
+	* …
+
+Step 5: After the descriptor selection is complete, the user can submit. This will push a new item to the items model and return the user to the main options page.
+
+
+
+
+The main options page shows the following options. 
+	1. Enter a new item.
+	2. Review items entered by user.
+	3. See a map that includes nearby items entered by other users. 
+
+
+Models:
+	Users - email, name, password(hashed)
+	Items - location, hazardous, sharp, waste, broken
+	Tools - gloves(nitrile), gloves(thick), medical waste container, dog bag, broom and dust bin. 
+	
+
+Model relationships: 
+	Each user can enter multiple items. 
+	In theory, each item could have multiple users unless I come up with a way to prevent a potential repeat entry. Could check if that location already has something in the db and ask the user if it could be the same thing. 
+	The relationship between users and items should be N:M
+	Each item could require multiple tools for cleanup. 1:M 
+	There is the possibility that the same broom will be used to clean up multiple items, but that relationship is not required for reporting. 
+
+| user	|
+|:===:|
+| id [pk] | 	int|
+| email |	string|
+| password |	string|
+
+
+| item |	|
+| hazardId |	boolean|
+| toolId |	string|
+| location | 	string|
+	
+
+	
+tool	
+nitrile_gloves	boolean
+work_gloves	boolean
+broom	boolean
+sharp_storage	boolean
+dog_bag	
+
+
+hazard	
+sharp	
+needle	
+glass	
+waste	
+
+sequelize model:create --name hazard --attributes type:string 
+
+sequelize model:create --name item --attributes hazardId:integer,location:string,userId:integer,cleanerId:integer
+
+sequelize model:create --name tool --attributes type:string
+
+sequelize model:create --name hazardsTools --attributes hazardId:integer,toolId:integer
+sequelize model:create --name itemsHazards --attributes itemId:integer,hazardId:integer
+
+// already created // sequelize model:create --name user --attributes email:string,name:string,password:string
+
+sequelize db:migrate
+
+
+models.user.hasMany(models.item);
+models.item.belongsTo(models.user);
+
+models.item.belongsToMany(models.hazard, {through: 'itemsHazards'});
+models.hazard.belongsToMany(models.item, {through: 'itemsHazards'});
+
+models.tool.belongsToMany(models.hazard, {through: 'hazardsTools'});
+models.hazard.belongsToMany(models.tool, {through: 'hazardsTools'});
+	
+
+***************************************
+Navigator.Geolocation docs
+***************************************
+
+https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+The geolocation object
+Section
+The Geolocation API is published through the navigator.geolocation object.
+If the object exists, geolocation services are available. You can test for the presence of geolocation thusly:
+if ("geolocation" in navigator) {
+  /* geolocation is available */
+} else {
+  /* geolocation IS NOT available */
+}
+
+Note: On Firefox 24 and older versions, "geolocation" in navigator always returned true even if the API was disabled. This has been fixed with Firefox 25 to comply with the spec. (bug 884921).
+Getting the current position
+Section
+To obtain the user's current location, you can call the getCurrentPosition() method. This initiates an asynchronous request to detect the user's position, and queries the positioning hardware to get up-to-date information. When the position is determined, the defined callback function is executed. You can optionally provide a second callback function to be executed if an error occurs. A third, optional, parameter is an options object where you can set the maximum age of the position returned, the time to wait for a request, and if you want high accuracy for the position.
+Note: By default, getCurrentPosition() tries to answer as fast as possible with a low accuracy result. It is useful if you need a quick answer regardless of the accuracy. Devices with a GPS, for example, can take a minute or more to get a GPS fix, so less accurate data (IP location or wifi) may be returned to getCurrentPosition().
+navigator.geolocation.getCurrentPosition(function(position) {
+  do_something(position.coords.latitude, position.coords.longitude);
+});
+
+
+
+The above example will cause the do_something() function to execute when the location is obtained.
+
+
+***************************************
+***************************************
+
+
+
+Description |	Controller - Path   |	Controller - Method | Controller - Action	Model - Sequelize	View - Response Contents	View - Logic	View - Links to…
+
+________________________________________________________________________________________________________________________________
+|   Description     |               Controller              |       Model       |                        View                       |
+|                   | Path          |   Method  |   Action  |     Sequelize     | Response Contents |   View Logic  |   Links to... |
+________________________________________________________________________________________________________________________________
+|Root route - login	|   /           |   GET     |   index   |                   |                       | 						
+User profile home	|   /profile	|   GET					
+
+
+New Item Entry	/user/new						
+Index of user’s items	/user/index						
+	
+
+
+
+
+
+
+
+Login/Signup 	-> profile	-> new-item -> back to profile after added
+					or
+					-> index of items	-> show-item	-> back to index
+												or
+												-> back to profile
+
+
+
+
+
+
