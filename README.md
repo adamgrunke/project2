@@ -195,7 +195,10 @@ models.hazard.belongsToMany(models.item, {through: 'itemsHazards'});
 
 models.tool.belongsToMany(models.hazard, {through: 'hazardsTools'});
 models.hazard.belongsToMany(models.tool, {through: 'hazardsTools'});
-	
+
+sequelize seed:generate -- name [name]
+sequelize db:seed:all
+sequelize db:seed:undo:all
 
 ***************************************
 Navigator.Geolocation docs
@@ -272,3 +275,14 @@ Success of submission should be shown on the users page using FLASH for now.
 user profile page should show a map of all items submitted within a certain range from the
 user's current location. 
 This means that I need to grab the user's location when they hit the profile page. 
+
+
+Tuesday afternoon:
+When the profile page loads, access the items db and pass that data to the ejs page to display
+on the mapbox map. 
+
+Do I want to select the item from the map to go to the single item page? Should the map center on that 
+item when selected? 
+
+<input type='text' name="lat" value="<%=position.coords.latitude%>" >
+    <input type='text' name="long" value="<%=position.coords.longitude%>" >
