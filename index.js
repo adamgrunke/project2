@@ -69,6 +69,11 @@ app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+app.get('/profile/new-item', function(req, res) {
+  
+  res.render("new-item")
+})
+
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
 

@@ -169,10 +169,9 @@ dog_bag
 
 
 hazard	
-sharp	
-needle	
-glass	
-waste	
+1   needle
+2   glass	
+3   waste	
 
 sequelize model:create --name hazard --attributes type:string 
 
@@ -262,4 +261,14 @@ Login/Signup 	-> profile	-> new-item -> back to profile after added
 
 
 
+End of monday plan:
+Make a form that POSTS the lat/long to the item location model.
+item model requires: hazardId, location, userId, cleanerId. 
+submit cleanerId as a null for later update once someone picks up the item.
+I need to know how mapbox wants the lat/long info before I post to the item db. 
+When the user submits the form, hits the /user/new POST route and then redirects back to the user's profile.
+Success of submission should be shown on the users page using FLASH for now. 
 
+user profile page should show a map of all items submitted within a certain range from the
+user's current location. 
+This means that I need to grab the user's location when they hit the profile page. 
