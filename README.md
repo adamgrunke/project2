@@ -285,4 +285,29 @@ Do I want to select the item from the map to go to the single item page? Should 
 item when selected? 
 
 <input type='text' name="lat" value="<%=position.coords.latitude%>" >
-    <input type='text' name="long" value="<%=position.coords.longitude%>" >
+<input type='text' name="long" value="<%=position.coords.longitude%>" >
+
+
+
+EJS Views
+USER PROFILE
+User profile page shows the users location centered on a map and has the form for entering a new item.
+Data needed when page loads - navigator.geolocation.getCurrentPosition.
+Data for new item added by user into the form.
+
+Form Submit renders to the user profile page with a success flash indicating the data was saved.
+
+ITEM VIEWS index
+User sees items on the map that have already been entered. Map is centered on their location. 
+Data needed when page loads - navigator.geolocation.getCurrentPosition.
+Data from db - item.location from the items table will show as pins on the map within the view zoom range. 
+Data for each item on map item.id for the show page.
+
+Selecting an item from the map will take the user to the show item details page.
+
+ITEM SHOW DETAILS
+Display the location of the item on the map along with the user's location as a reference. 
+Display the tools needed for the item cleanup. 
+Allow the user to "Clean up" the item from the database. 
+Data needed for this page - location of user, location of item, tools needed, 
+render to user profile page

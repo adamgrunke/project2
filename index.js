@@ -66,12 +66,23 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
+  // let position = aquireLocation();
   res.render('profile');
 });
 
-app.get('/profile/new-item', function(req, res) {
+app.get('/profile/show-all-items', function(req, res) {
   
-  res.render("new-item")
+  res.render("show-all-items")
+});
+
+app.get('/profile/show/:id', function(req, res) {
+
+  res.render('show')
+})
+
+app.post('/profile', function(req, res) {
+  
+  res.render('profile', {})
 })
 
 // isLoggedIn requires login to access anything on this route

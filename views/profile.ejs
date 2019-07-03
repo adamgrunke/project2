@@ -6,10 +6,10 @@
 
 
 
-<%# <button id="getlocation-btn">Get GPS Location Info</button> %>
+<button id="getlocation-btn">Get GPS Location Info</button>
 
-<form method="GET" action="/profile/new-item">
-    <button type="submit" id="new-item-btn">Add new item</button>
+<form method="GET" action="/profile/show-all-items">
+    <button type="submit" id="show-all-items-btn">show all items</button>
 </form>
 
 
@@ -17,21 +17,20 @@
 
 <%# from mapbox  %>
 <div id='map' ></div>
-<script>
 
-
+<%# <script>
 mapboxgl.accessToken = "pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w"
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
-    // center: ,
-    // zoom: 9
-})
-</script>
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: {lng: -122.332473, lat: 47.607255},
+    zoom: 17
+});
+</script> %>
 
+<form method="POST" action="/profile" >
+    <input id='lat-center' type='text' name='lat' value=''>
+    <input id='lng-center' type='text' name='lng' value=''>
+</form>
 
-
-
-
-
-    <script src="/js/new-item.js"></script>
+<script src="/js/app.js"></script>
