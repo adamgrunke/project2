@@ -1,10 +1,19 @@
 // DOM 
-let getLocationBtn = document.getElementById('getlocation-btn');
-let latLong = document.getElementById('lat-long');
+// let getLocationBtn = document.getElementById('getlocation-btn');
+// REMOVE TEST ONLY let latLong = document.getElementById('lat-long');
 let mapCenterLat = document.getElementById('lat-center');
 let mapCenterLng = document.getElementById('lng-center');
 let userLocLat = 0;
 let userLocLng = 0;
+
+// from Kelsey
+// const shopsCoords = shops.map(function(shop){
+//     return {
+//         lat: shop.latitude,
+//         lng: shop.longitude,    }
+// })
+
+
 // Event listeners
 // getLocationBtn.addEventListener('click',aquireLocation);
 document.addEventListener('DOMContentLoaded', aquireLocation);
@@ -29,13 +38,13 @@ function aquireLocation(){
 }
 
 function showLocation(position){
-    latLong.textContent = `Quick copy lat/long: ${position.coords.latitude}, ${position.coords.longitude}`
+    // REMOVE-TEST ONLY latLong.textContent = `Quick copy lat/long: ${position.coords.latitude}, ${position.coords.longitude}`
     mapCenterLat.value = position.coords.latitude;
     mapCenterLng.value = position.coords.longitude;
-    userLocLat = position.coords.latitude;
-    userLocLng = position.coords.longitude;
-
-    loadMap(userLocLat, userLocLng);
+    // userLocLat = position.coords.latitude;
+    // userLocLng = position.coords.longitude;
+    console.log(position.coords.latitude, position.coords.longitude)
+    loadMap(position.coords.latitude, position.coords.longitude);
 
 }
 
@@ -43,12 +52,37 @@ function errorCallback(error) {
     alert('ERROR(' + error.code + '): ' + error.message);
   };
 
-function loadMap(lat, lng){
+function loadMap(lat_val, lng_val){
     mapboxgl.accessToken = 'pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w';
         var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: {lng: userLocLng, lat: userLocLat},
+        center: {lng: lng_val, lat: lat_val},
         zoom: 17
     });
+    // const geoJson = {
+    //     "type": "FeatureCollection",
+    //     "features": markerCoords.map( function({lng: userLocLng, lat: userLocLat}) {
+    //         let marker = {
+    //             "type": "Feature",
+    //             "properties": {
+    //                 "iconSize": [60,60]
+    //             },
+    //             "geometry": {
+    //                 "type": "Point",
+    //                 "coordinates": {lng: userLocLng, lat: userLocLat}
+    //             }
+    //         }
+    //         return marker
+    //     })
+    // }
+    
+    
+    // geoJson.features.forEach( function(feature) {
+    //     new mapboxgl.Marker({anchor: 'center'})
+    //     .setLngLat(feature.geometry.coordinates)
+    //     .addTo(map)
+    // })
+
+
 }

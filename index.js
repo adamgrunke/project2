@@ -67,7 +67,11 @@ app.get('/', function(req, res) {
 
 app.get('/profile', isLoggedIn, function(req, res) {
   // let position = aquireLocation();
-  res.render('profile');
+  db.hazard.findAll().then(function(hazards){
+
+    res.render('profile',{hazards});
+  })
+
 });
 
 app.get('/profile/show-all-items', function(req, res) {
@@ -81,8 +85,13 @@ app.get('/profile/show/:id', function(req, res) {
 })
 
 app.post('/profile', function(req, res) {
-  
-  res.render('profile', {})
+  db.item.create({
+    hazardId: req.body.hazard,
+    location: `${req.body.lat},${req.body.lng}`,
+    userId: req.body.id,
+    cleanerId: null
+  })
+  res.redirect('profile')
 })
 
 // isLoggedIn requires login to access anything on this route
