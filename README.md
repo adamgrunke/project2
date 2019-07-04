@@ -311,3 +311,9 @@ Display the tools needed for the item cleanup.
 Allow the user to "Clean up" the item from the database. 
 Data needed for this page - location of user, location of item, tools needed, 
 render to user profile page
+
+
+
+Problems with the navigator.geolocation.getCurrentLocation. 
+File under weird: 
+If anyone is using navigator.geolocation.getCurrentPosition and it doesn't work all of a sudden, it might not be something wrong with your code. I've had some issues with this breaking while I've been using Chrome. If it breaks and you can't figure out why, then try out a different browser. Instantly worked with Firefox ... and then it started working again in Chrome. 

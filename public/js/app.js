@@ -18,9 +18,6 @@ let userLocLng = 0;
 // getLocationBtn.addEventListener('click',aquireLocation);
 document.addEventListener('DOMContentLoaded', aquireLocation);
 // Functions
-
-// write function that will first check to see if navigator.geolocation is supported by the browser
-// if supported, call navigator.geolocation.
 function aquireLocation(){
     if (!navigator.geolocation){
         console.log("Your browser does not support navigator.geolocation");
@@ -51,6 +48,8 @@ function showLocation(position){
 function errorCallback(error) {
     alert('ERROR(' + error.code + '): ' + error.message);
   };
+// use the map array simililar to the mapfun... call load map in that instead of retyping the code below. 
+// this is for the show all items.
 
 function loadMap(lat_val, lng_val){
     mapboxgl.accessToken = 'pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w';
@@ -60,29 +59,23 @@ function loadMap(lat_val, lng_val){
         center: {lng: lng_val, lat: lat_val},
         zoom: 17
     });
-    // const geoJson = {
-    //     "type": "FeatureCollection",
-    //     "features": markerCoords.map( function({lng: userLocLng, lat: userLocLat}) {
-    //         let marker = {
-    //             "type": "Feature",
-    //             "properties": {
-    //                 "iconSize": [60,60]
-    //             },
-    //             "geometry": {
-    //                 "type": "Point",
-    //                 "coordinates": {lng: userLocLng, lat: userLocLat}
-    //             }
-    //         }
-    //         return marker
-    //     })
-    // }
+    const geoJson = {
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {
+                "iconSize": [60,60]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": {lng: lng_val, lat: lat_val}
+            }
+        }]
+    }
     
-    
-    // geoJson.features.forEach( function(feature) {
-    //     new mapboxgl.Marker({anchor: 'center'})
-    //     .setLngLat(feature.geometry.coordinates)
-    //     .addTo(map)
-    // })
-
-
+    geoJson.features.forEach( function(feature) {
+        new mapboxgl.Marker({anchor: 'center'})
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map)
+    })
 }

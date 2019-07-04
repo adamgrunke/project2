@@ -1,28 +1,20 @@
 <h2>Profile Page</h2>
 
 <p> Hello, <%= currentUser.name %> !</p>
-<p> User ID:  <%= currentUser.id %> !</p>
-
 
 <a href="/">Home</a>
 
-
-
-<%# <button id="getlocation-btn">Get GPS Location Info</button> %>
-
-<%# <form method="GET" action="/profile/show-all-items">
+<form method="GET" action="/profile/show-all-items">
     <button type="submit" id="show-all-items-btn">show all items</button>
-</form> %>
-
-<%# <p id="lat-long"></p> %> <%# REMOVE TEST ONLY%>
+</form>
 
 <%# from mapbox  %>
 <div id='map' ></div>
 
 <form method="POST" action="/profile" >
-    <input id='lat-center' type='text' name='lat' >
-    <input id='lng-center' type='text' name='lng' >
-    <input type='text' name='id' value='<%=currentUser.id%>'>
+    <input hidden id='lat-center' type='text' name='lat' >
+    <input hidden id='lng-center' type='text' name='lng' >
+    <input hidden type='text' name='id' value='<%=currentUser.id%>'>
     <select name="hazard" >
 
         <% hazards.forEach(function(hazard){ %>

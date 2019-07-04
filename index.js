@@ -66,23 +66,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  // let position = aquireLocation();
   db.hazard.findAll().then(function(hazards){
-
     res.render('profile',{hazards});
   })
 
 });
-
-app.get('/profile/show-all-items', function(req, res) {
-  
-  res.render("show-all-items")
-});
-
-app.get('/profile/show/:id', function(req, res) {
-
-  res.render('show')
-})
 
 app.post('/profile', function(req, res) {
   db.item.create({
@@ -92,7 +80,13 @@ app.post('/profile', function(req, res) {
     cleanerId: null
   })
   res.redirect('profile')
-})
+});
+
+app.get('/profile/show-all-items', function(req, res) {
+  db.item.findAll().then(function(itemData){
+    res.send({itemData})
+  })
+});
 
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
