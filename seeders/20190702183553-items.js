@@ -15,7 +15,8 @@ module.exports = {
     return queryInterface.bulkInsert('items', [
       {
         hazardId: 3,
-        location: '47.607255,-122.332473',
+        lat: '47.607255',
+        lng: '-122.332473',
         userId: 1,
         cleanerId: null,
         createdAt: new Date(),
@@ -23,7 +24,8 @@ module.exports = {
       },
       {
         hazardId: 2,
-        location: '47.603667,-122.329153',
+        lat: '47.603667',
+        lng: '-122.329153',
         userId: 3,
         cleanerId: null,
         createdAt: new Date(),
@@ -31,7 +33,8 @@ module.exports = {
       },
       {
         hazardId: 1,
-        location: '47.620303,-122.349354',
+        lat: '47.620303',
+        lng: '-122.349354',
         userId: 1,
         cleanerId: null,
         createdAt: new Date(),

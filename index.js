@@ -75,7 +75,8 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.post('/profile', function(req, res) {
   db.item.create({
     hazardId: req.body.hazard,
-    location: `${req.body.lat},${req.body.lng}`,
+    lat: req.body.lat,
+    lng: req.body.lng,
     userId: req.body.id,
     cleanerId: null
   })
@@ -84,13 +85,13 @@ app.post('/profile', function(req, res) {
 
 app.get('/profile/show-all-items', function(req, res) {
   db.item.findAll().then(function(itemData){
-    res.send({itemData})
+    console.log({itemData});
+    res.render('show-all-items', {itemData})
   })
 });
 
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
-
 
 var server = app.listen(process.env.PORT || 3000);
 

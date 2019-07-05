@@ -12,9 +12,9 @@
 <div id='map' ></div>
 
 <form method="POST" action="/profile" >
-    <input hidden id='lat-center' type='text' name='lat' >
-    <input hidden id='lng-center' type='text' name='lng' >
-    <input hidden type='text' name='id' value='<%=currentUser.id%>'>
+    <input  id='lat-center' type='text' name='lat' >
+    <input  id='lng-center' type='text' name='lng' >
+    <input  type='text' name='id' value='<%=currentUser.id%>'>
     <select name="hazard" >
 
         <% hazards.forEach(function(hazard){ %>

@@ -11,7 +11,10 @@ module.exports = {
       hazardId: {
         type: Sequelize.INTEGER
       },
-      location: {
+      lat: {
+        type: Sequelize.STRING
+      },
+      lng: {
         type: Sequelize.STRING
       },
       userId: {

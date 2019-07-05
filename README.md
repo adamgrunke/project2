@@ -317,3 +317,27 @@ render to user profile page
 Problems with the navigator.geolocation.getCurrentLocation. 
 File under weird: 
 If anyone is using navigator.geolocation.getCurrentPosition and it doesn't work all of a sudden, it might not be something wrong with your code. I've had some issues with this breaking while I've been using Chrome. If it breaks and you can't figure out why, then try out a different browser. Instantly worked with Firefox ... and then it started working again in Chrome. 
+
+Updating the item table: 
+Here are my steps that I'll follow to drop the item table and create a new model that includes
+lat AND long as seperate data in the model.
+
+Step 1: create temporary copies of the seeder, model, and migration files for items as reference.
+
+Step 2: DROP TABLE
+Step 3: sequelize model:create --name item --attributes hazardId:integer,lat:string,lng:string,userId:integer,cleanerId:integer --force
+
+Step 4: sequelize db:migrate
+
+Step 5: deleted old migration for create-item
+
+Step 6: added associations to the model
+models.user.hasMany(models.item);
+models.item.belongsTo(models.user);
+
+Step 7: update seeder even though I won't need to use it for now. 
+update the post route for profile to have seperate lat/lng instead of combined location.
+
+Step 8: Test it out!
+	page loads as previously working. All data gets to the items table. 
+

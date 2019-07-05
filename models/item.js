@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const item = sequelize.define('item', {
     hazardId: DataTypes.INTEGER,
-    location: DataTypes.STRING,
+    lat: DataTypes.STRING,
+    lng: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     cleanerId: DataTypes.INTEGER
   }, {});
@@ -10,8 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     models.item.belongsTo(models.user);
     models.item.belongsToMany(models.hazard, {through: 'itemsHazards'});
-
-
   };
   return item;
 };
