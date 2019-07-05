@@ -84,9 +84,11 @@ app.post('/profile', function(req, res) {
 });
 
 app.get('/profile/show-all-items', function(req, res) {
-  db.item.findAll().then(function(itemData){
-    console.log({itemData});
-    res.render('show-all-items', {itemData})
+  db.item.findAll({
+    // include: [db.hazard, db.tool]
+  }).then(function(item){
+    res.render('show-all-items', {item})
+    // res.send({item})
   })
 });
 

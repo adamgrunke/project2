@@ -339,5 +339,10 @@ Step 7: update seeder even though I won't need to use it for now.
 update the post route for profile to have seperate lat/lng instead of combined location.
 
 Step 8: Test it out!
-	page loads as previously working. All data gets to the items table. 
+page loads as previously working. All data gets to the items table. 
+
+sequelize db:seed --seed seeders/20190702183553-items.js
+
+REMOVED from the layout.ejs file.
+<%- JSON.stringify(currentUser) %>
 
