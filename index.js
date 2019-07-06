@@ -105,7 +105,7 @@ app.get('/profile/show-user-items', function(req, res) {
 
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
-app.use('/edit', require('./controllers/edit')); 
+app.use('/hazard', require('./controllers/hazard')); 
 
 var server = app.listen(process.env.PORT || 3000);
 
