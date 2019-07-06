@@ -2,14 +2,13 @@
 
 <a href="/profile">Back to profile</a>
 
-<% item.forEach(function(item,){ %>
-    
+<% item.forEach(function(item){ %>
     <div>
         <h3> ID: <%= item.id %> Hazard Type: <%= item.hazardId %></h3>
         <h4> Found by user id: <%= item.userId %> </h4>
         <p> <%= item.lat %>, <%= item.lng %></p>
 
-        <form method="POST" action="profile/show-all-items/<%= currentUser.id %>/?_method=PUT ">
+        <form method="POST" action="/show-all-items/<%=item.id%>/?_method=PUT ">
             <input type="submit" value="update"/>
         </form>
 

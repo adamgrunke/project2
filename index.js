@@ -85,14 +85,15 @@ app.post('/profile', function(req, res) {
   res.redirect('profile')
 });
 
-app.put('/show-all-items', function(req, res) {
+app.put('/show-all-items/:id', isLoggedIn, function(req, res) {
+  var id = parseInt(req.params.id);
   db.item.update({
     cleanerId: req.user.id
 },
 {
     where: {id: id}
 }).then(function(){
-    res.redirect('profile');
+    res.redirect('/profile');
 })
 })
 
