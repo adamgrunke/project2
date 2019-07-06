@@ -1,0 +1,8 @@
+<h1>Settings</h1>
+
+<h3>Hazards</h3>
+<%hazards.forEach(function(hazard){%>
+    <ul>
+        <li> <a href="/edit/<%=hazard.id%>" >   <%=hazard.type%>    </a> </li>
+    </ul>
+<%});%>

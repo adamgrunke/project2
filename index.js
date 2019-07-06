@@ -9,6 +9,7 @@ const passport = require('./config/passportConfig');
 const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
+const methodOverride = require('method-override');
 const app = express();
 
 
@@ -36,6 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use(ejsLayouts);
 app.use(helmet());
+app.use(methodOverride('_method'))
 
 //Configures express-session middleware. Must happen before passport.
 app.use(session({
@@ -84,16 +86,26 @@ app.post('/profile', function(req, res) {
 });
 
 app.get('/profile/show-all-items', function(req, res) {
-  db.item.findAll({
-    // include: [db.hazard, db.tool]
-  }).then(function(item){
+  db.item.findAll().then(function(item){
+    
+    
     res.render('show-all-items', {item})
+    // res.send({item})
+  })
+});
+
+app.get('/profile/show-user-items', function(req, res) {
+  db.item.findAll().then(function(items){
+    
+    
+    res.render('show-user-items', {items})
     // res.send({item})
   })
 });
 
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
+app.use('/edit', require('./controllers/edit')); 
 
 var server = app.listen(process.env.PORT || 3000);
 

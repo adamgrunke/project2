@@ -346,3 +346,7 @@ sequelize db:seed --seed seeders/20190702183553-items.js
 REMOVED from the layout.ejs file.
 <%- JSON.stringify(currentUser) %>
 
+create an add new tool or hazard page for the tool and hazard models.
+create a delete tool or hazard page for the tool and hazard models.
+
+<h1><%=req.params.id%>%></h1>
