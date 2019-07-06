@@ -25,6 +25,13 @@ router.post('/', function(req, res) {
     res.redirect('hazard/settings')
 });
 
-
+router.delete('/:id', function(req, res) {
+    console.log("destroy: " + parseInt(req.params.id))
+     db.hazard.destroy({
+       where: {id: parseInt(req.params.id)}
+     }).then(function() {
+       res.redirect('/hazard/settings');
+     });
+   });
 
 module.exports = router;

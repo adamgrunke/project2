@@ -3,9 +3,18 @@
 <h3>Hazards</h3>
 <%hazards.forEach(function(hazard){%>
     <h4><a href="/hazard/<%=hazard.id%>"><%=hazard.type%></a></h4>
+    
+    <form method="POST" action="/hazard/<%= hazard.id %>/?_method=DELETE ">
+        <input type="submit" value="delete"/>
+    </form>
+
+
+
 <%});%>
 
 <form method="POST" action="/hazard">
     <input type="text" name="hazard">
     <button type="submit" >Add New Hazard</button>
 </form>
+
+
