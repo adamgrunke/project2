@@ -85,10 +85,31 @@ app.post('/profile', function(req, res) {
   res.redirect('profile')
 });
 
+app.put('/show-all-items', function(req, res) {
+  db.item.update({
+    cleanerId: req.user.id
+},
+{
+    where: {id: id}
+}).then(function(){
+    res.redirect('profile');
+})
+})
+
+// app.put('show-all-items/:id', function(req, res){
+//   var id = parseInt(req.params.id);
+//   db.item.update({
+//     cleanerId: req.user.id
+//   },
+//   {
+//       where: {id: id}
+//   }).then(function(){
+//       res.redirect('/' + req.params.id);
+//   })
+// })
+
 app.get('/profile/show-all-items', function(req, res) {
   db.item.findAll().then(function(item){
-    
-    
     res.render('show-all-items', {item})
     // res.send({item})
   })
@@ -96,8 +117,6 @@ app.get('/profile/show-all-items', function(req, res) {
 
 app.get('/profile/show-user-items', function(req, res) {
   db.item.findAll().then(function(items){
-    
-    
     res.render('show-user-items', {items})
     // res.send({item})
   })

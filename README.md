@@ -350,3 +350,5 @@ create an add new tool or hazard page for the tool and hazard models.
 create a delete tool or hazard page for the tool and hazard models.
 
 <h1><%=req.params.id%>%></h1>
+
+        <a href="/profile/<%=currentUser.id%>">test link for id</a>
