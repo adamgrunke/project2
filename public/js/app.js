@@ -44,7 +44,7 @@ function errorCallback(error) {
 // this is for the show all items.
 
 function loadMap(lat_val, lng_val){
-    mapboxgl.accessToken = 'pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w';
+    mapboxgl.accessToken = '';
         var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -73,7 +73,7 @@ function loadMap(lat_val, lng_val){
 }
 
 // function loadMapWithPoints(lat_val, lng_val){
-//     mapboxgl.accessToken = "pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w";
+//     mapboxgl.accessToken = MAPBOXPUBLICKEY;
 //         var map = new mapboxgl.Map({
 //         container: 'map',
 //         style: 'mapbox://styles/mapbox/streets-v11',
