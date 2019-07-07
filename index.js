@@ -110,7 +110,9 @@ app.put('/show-all-items/:id', isLoggedIn, function(req, res) {
 // })
 
 app.get('/profile/show-all-items', function(req, res) {
-  db.item.findAll().then(function(item){
+  db.item.findAll({
+    include: [db.hazard]
+  }).then(function(item){
     res.render('show-all-items', {item})
     // res.send({item})
   })
@@ -126,6 +128,7 @@ app.get('/profile/show-user-items', function(req, res) {
 // isLoggedIn requires login to access anything on this route
 app.use('/auth', require('./controllers/auth')); 
 app.use('/hazard', require('./controllers/hazard')); 
+app.use('/tool', require('./controllers/tool')); 
 
 var server = app.listen(process.env.PORT || 3000);
 

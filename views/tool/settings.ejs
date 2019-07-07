@@ -1,0 +1,18 @@
+<h1>Tool Settings</h1>
+
+<h3>tools</h3>
+<%tools.forEach(function(tool){%>
+    <h4><a href="/tool/<%=tool.id%>"><%=tool.type%></a></h4>
+    
+    <form method="POST" action="/tool/<%= tool.id %>/?_method=DELETE ">
+        <input type="submit" value="delete"/>
+    </form>
+<%});%>
+
+<form method="POST" action="/tool">
+    <input type="text" name="tool">
+    <button type="submit" >Add New tool</button>
+</form>
+
+
+<a href="/">Back to home</a>

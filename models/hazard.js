@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   hazard.associate = function(models) {
     // associations can be defined here
-    models.hazard.belongsToMany(models.item, {through: 'itemsHazards'});
+    models.hazard.hasMany(models.item);
     models.hazard.belongsToMany(models.tool, {through: 'hazardsTools'});
 
     

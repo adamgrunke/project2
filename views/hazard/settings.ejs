@@ -1,4 +1,4 @@
-<h1>Settings</h1>
+<h1>Hazard Settings</h1>
 
 <h3>Hazards</h3>
 <%hazards.forEach(function(hazard){%>
@@ -7,9 +7,6 @@
     <form method="POST" action="/hazard/<%= hazard.id %>/?_method=DELETE ">
         <input type="submit" value="delete"/>
     </form>
-
-
-
 <%});%>
 
 <form method="POST" action="/hazard">
@@ -17,4 +14,9 @@
     <button type="submit" >Add New Hazard</button>
 </form>
 
+
+
+
+
+<a href="/">Back to home</a>
 
