@@ -2,10 +2,13 @@
 
 <a href="/profile">Back to profile</a>
 
-<div id='map' ></div>
 
-<% items.forEach(function(item,){ %>
-    <h3> ID: <%= item.id %> Hazard Type: <%= item.hazardId %></h3>
-    <h4> Found by user id: <%= item.userId %> </h4>
-    <p> <%= item.lat %>, <%= item.lng %></p>
+<% items.forEach(function(item){ %>
+    <%if (item.cleanerId === item.userId ) { %>
+        <div>
+            <h3> ID: <%= item.id %> Hazard Type: <%= item.hazardId %></h3>
+            <h4> Found by user id: <%= item.userId %> </h4>
+            <p> <%= item.lat %>, <%= item.lng %></p>
+        </div>
+    <% } %>
 <% }) %>

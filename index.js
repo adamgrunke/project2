@@ -97,17 +97,6 @@ app.put('/show-all-items/:id', isLoggedIn, function(req, res) {
 })
 })
 
-// app.put('show-all-items/:id', function(req, res){
-//   var id = parseInt(req.params.id);
-//   db.item.update({
-//     cleanerId: req.user.id
-//   },
-//   {
-//       where: {id: id}
-//   }).then(function(){
-//       res.redirect('/' + req.params.id);
-//   })
-// })
 
 app.get('/profile/show-all-items', function(req, res) {
   db.item.findAll({
@@ -119,7 +108,9 @@ app.get('/profile/show-all-items', function(req, res) {
 });
 
 app.get('/profile/show-user-items', function(req, res) {
-  db.item.findAll().then(function(items){
+  db.item.findAll({
+    include: [db.hazard]
+  }).then(function(items){
     res.render('show-user-items', {items})
     // res.send({item})
   })
