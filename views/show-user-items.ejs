@@ -1,14 +1,11 @@
-<h2>Showing all items</h2>
+<h2>Here's all the stuff you've cleaned up, <%= currentUser.name %>! Good job.</h2>
 
 <a href="/profile">Back to profile</a>
 
-
 <% items.forEach(function(item){ %>
-    <%if (item.cleanerId === item.userId ) { %>
-        <div>
-            <h3> ID: <%= item.id %> Hazard Type: <%= item.hazardId %></h3>
-            <h4> Found by user id: <%= item.userId %> </h4>
-            <p> <%= item.lat %>, <%= item.lng %></p>
-        </div>
-    <% } %>
-<% }) %>
+            <div>
+                <h3>Hazard Type: <%= item.hazard.type %></h3>
+            
+                <p> <%= item.lat %>, <%= item.lng %></p>
+            </div>
+<% }); %>

@@ -36,6 +36,7 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use(ejsLayouts);
+app.set('layout extractScripts', true);
 app.use(helmet());
 app.use(methodOverride('_method'))
 
@@ -74,7 +75,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 });
 
-app.post('/profile', function(req, res) {
+app.post('/profile', isLoggedIn, function(req, res) {
   db.item.create({
     hazardId: req.body.hazard,
     lat: req.body.lat,
@@ -103,13 +104,14 @@ app.get('/profile/show-all-items', function(req, res) {
     include: [db.hazard]
   }).then(function(item){
     res.render('show-all-items', {item})
-    // res.send({item})
   })
 });
 
+
 app.get('/profile/show-user-items', function(req, res) {
   db.item.findAll({
-    include: [db.hazard]
+    where: {cleanerId : req.user.id},
+      include: [db.hazard]
   }).then(function(items){
     res.render('show-user-items', {items})
     // res.send({item})
