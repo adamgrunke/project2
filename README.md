@@ -356,7 +356,5 @@ create a delete tool or hazard page for the tool and hazard models.
         </form>
 
 Monday morning plan:
-Fix bug with cleaned up show all items. Currently not showing correct user.
-Display multiple items on map for show all pages.
 Associate tools with items.
 Show tools needed when point on map is selected. 

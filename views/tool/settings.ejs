@@ -2,7 +2,9 @@
 
 <h3>tools</h3>
 <%tools.forEach(function(tool){%>
-    <h4><a href="https://www.amazon.com/s?k=broom&ref=nb_sb_noss_1" target="_blank"><%=tool.type%></a></h4>
+    <h4><a href="https://www.amazon.com/s?k=<%=tool.type%>&ref=nb_sb_noss_1" target="_blank"><%=tool.type%></a></h4>
+
+
 
     <form method="POST" action="/tool/<%= tool.id %>/?_method=DELETE ">
         <input type="submit" value="delete"/>

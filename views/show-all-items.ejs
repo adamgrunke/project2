@@ -6,7 +6,7 @@
 </div>
 
 
-<% item.forEach(function(item){ %>
+<% items.forEach(function(item){ %>
     <%if (!item.cleanerId) { %>
         <div>
             <h3> Hazard Type: <%= item.hazard.type %></h3>
@@ -24,6 +24,7 @@
 
 
 <script>
-    const markerCoords = <%- item %>
+    const markerCoords = <%- JSON.stringify(coords) %>
+    console.log(markerCoords, coords)
 </script>
 <script src="/js/map-many.js"></script>

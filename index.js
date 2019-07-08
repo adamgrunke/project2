@@ -101,14 +101,21 @@ app.put('/show-all-items/:id', isLoggedIn, function(req, res) {
 
 app.get('/profile/show-all-items', function(req, res) {
   db.item.findAll({
+    where: {cleanerId : null},
     include: [db.hazard]
-  }).then(function(item){
-    res.render('show-all-items', {item})
+  }).then(function(items){
+    let markerCoords = [];
+    items.forEach(function(item){
+      let coord = [item.lng, item.lat];
+      // coord.push(item.lng).push(item.lat);
+      markerCoords.push(coord);
+    })
+    res.render('show-all-items', {items, coords: markerCoords})
   })
 });
 
 
-app.get('/profile/show-user-items', function(req, res) {
+app.get('/profile/show-user-items', isLoggedIn, function(req, res) {
   db.item.findAll({
     where: {cleanerId : req.user.id},
       include: [db.hazard]

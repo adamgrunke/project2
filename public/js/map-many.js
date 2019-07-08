@@ -3,7 +3,7 @@
 // REMOVE TEST ONLY let latLong = document.getElementById('lat-long');
 let userLocLat;
 let userLocLng;
-
+console.log(markerCoords)
 // Event listeners
 // getLocationBtn.addEventListener('click',aquireLocation);
 document.addEventListener('DOMContentLoaded', aquireLocation);
@@ -69,36 +69,3 @@ function loadMap(lat_val, lng_val){
 }
 
 
-function loadMapWithPoints(lat_val, lng_val){
-    mapboxgl.accessToken = "pk.eyJ1Ijoib25vcm9mZiIsImEiOiJjanhjNzUycW8wMGRzM3BueHFsajJvbjRwIn0.XA0Kl6rjZ7NaRnzWAiAf9w"
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: markerCoords[0],
-        zoom: 9
-    })
-
-    const geoJson = {
-        "type": "FeatureCollection",
-        "features": markerCoords.map( function(coord) {
-            let marker = {
-                "type": "Feature",
-                "properties": {
-                    "iconSize": [60,60]
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": coord
-                }
-            }
-            return marker
-        })
-    }
-
-
-    geoJson.features.forEach( function(feature) {
-        new mapboxgl.Marker({anchor: 'center'})
-        .setLngLat(feature.geometry.coordinates)
-        .addTo(map)
-    })
-}
