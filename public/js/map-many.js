@@ -3,7 +3,6 @@
 // REMOVE TEST ONLY let latLong = document.getElementById('lat-long');
 let userLocLat;
 let userLocLng;
-console.log(markerCoords)
 // Event listeners
 // getLocationBtn.addEventListener('click',aquireLocation);
 document.addEventListener('DOMContentLoaded', aquireLocation);
@@ -60,12 +59,72 @@ function loadMap(lat_val, lng_val){
             return marker
         })
     }
-    
+
     geoJson.features.forEach( function(feature) {
+    
         new mapboxgl.Marker({anchor: 'center'})
+
         .setLngLat(feature.geometry.coordinates)
         .addTo(map)
     })
+    // map.on('load', function(){
+    //     let layers = map.getStyle().layers;
+    //     let labelLayerId;
+    //     for (let i = 0; i < layers.length; i++) {
+    //         if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+    //             labelLayerId = layers[i].id;
+    //             break;
+    //         }
+    //     }
+    //     map.addLayer({
+    //         "id": "3d-buildings",
+    //         "source": "composite",
+    //         "source-layer": "building",
+    //         "filter": ["==", "extrude", "true"],
+    //         "type": "fill-extrusion",
+    //         "minzoom": 12,
+    //         "paint": {
+    //             "fill-extrusion-color": "#009e60",
+    //             "fill-extrusion-height": [
+    //                 "interpolate",
+    //                 ["linear"],
+    //                 ["zoom"],
+    //                 12,
+    //                 0,
+    //                 12.05,
+    //                 ["get" , "height"]
+    //             ],
+    //             "fill-extrusion-base": [
+    //                 "interpolate",
+    //                 ["linear"],
+    //                 ["zoom"],
+    //                 12,
+    //                 0,
+    //                 12.05,
+    //                 ["get" , "min_height"]
+    //             ],
+    //             "fill-extrusion-opacity": 0.6
+    //         }
+    //     }, labelLayerId)
+    // });
+    // geoJson.features.forEach( function(feature) {
+    //     // create a DOM element for the marker
+    //     var el = document.createElement('div');
+    //     el.className = 'marker';
+    //     el.style.backgroundImage = 'url(https://www.freepik.com/free-vector/location_2900811.htm)';
+    //     el.style.width = 50 + 'px';
+    //     el.style.height = 50 + 'px';
+    
+    //     el.addEventListener('click', function () {
+    //         console.log("testTEST")
+    //         // document.getElementById('message').textContent = marker.properties.message
+    //     });
+    
+    //     new mapboxgl.Marker({element: el, anchor: 'center'})
+
+    //     .setLngLat(feature.geometry.coordinates)
+    //     .addTo(map)
+    // })
 }
 
 

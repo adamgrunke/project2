@@ -3,3 +3,12 @@
     height: 300px;
     width: 400px;
 }
+
+body {
+    background-image: url(/img/art-beautiful-bloom-1037994.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    opacity: 1;
+};
